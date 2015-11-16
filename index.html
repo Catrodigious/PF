@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./bootstrap/css/custom.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body ng-controller="PrinterInfo">
+
+<div class="container wExtraPadding">
+  <div class="row">
+  	<div class="col-sm-1">
+  		<img src="./images/typeA_logo_wires.svg">
+  	</div>
+  	<div class="col-sm-2">
+  		<img src="./images/type_a_machines.svg" class="logoImage">
+  	</div>	
+  	<div class="col-sm-8"></div>
+		<div class="col-sm-1"></div>
+  </div>
+  <div class="row">
+		<!-- col-size 3-->
+  	<div class="col-sm-3 panel-default wExtraPadding"> 
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse1" aria-expanded="true">Add printer</a>
+					</h4>
+				</div>
+				<div id="collapse1" class="panel-collapse">
+					<div class="panel-body">
+						<div class="input-group">
+							<b>Serial</b>
+							<input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" ng-model="serial">
+						</div>
+						<div class="input-group">
+							<b>Key</b>
+							<input type="text" class="form-control printers" placeholder="" aria-describedby="basic-addon1" ng-model="key">
+						</div>
+						<br>
+						<button type="button" class="btn btn-default" ng-click="printers(serial)">Add Printer</button>
+					</div>
+				</div>
+			</div>
+    </div>
+    <!-- col-size 9-->
+    <div class="col-sm-9 wExtraPadding">
+    	<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Printers Available: {{printerQty}}</h3>
+				</div>
+				
+				<div class="panel-body">
+					<div class="table-responsive">
+					<table style="width:100%">
+						<tr>
+							<th>Serial</th>
+							<th>Status</th>
+							<th>Last File</th>
+						</tr>
+						<tr ng-show="visible" ng-repeat="print in printersList">
+							<td>{{print}}</td>
+							<td>{{status}}</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

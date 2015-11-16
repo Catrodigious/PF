@@ -1,0 +1,26 @@
+{
+  "name": "printfarm",
+  "version": "0.1.0",
+  "description": "Multiple printer control software",
+  "keywords": [
+    "type a machines",
+    "print farm",
+    "print pod",
+    "pod",
+    "software"
+  ],
+  "main": "main.js",
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "express": "^4.13.1",
+    "mongoose": "^4.2.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Catrodigious/PF.git"
+  },
+  "scripts": "script.js",
+  "author": "Cat Casuat <cat@typeamachines.com> (http://typeamachines.com)",
+  "license": "ISC"
+}
