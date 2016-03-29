@@ -1,87 +1,230 @@
-<!DOCTYPE html>
-<html ng-app="app" lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="./bootstrap/css/custom.css">
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-  <script src="script.js"></script>
-</head>
-<body ng-controller="PrinterInfo">
+<html lang="en" ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div class="container wExtraPadding">
-  <div class="row">
-  	<div class="col-sm-1">
-  		<img src="./images/typeA_logo_wires.svg">
-  	</div>
-  	<div class="col-sm-2">
-  		<img src="./images/type_a_machines.svg" class="logoImage">
-  	</div>	
-  	<div class="col-sm-8"></div>
-		<div class="col-sm-1"></div>
-  </div>
-  <div class="row">
-		<!-- col-size 3-->
-  	<div class="col-sm-3 panel-default wExtraPadding"> 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" href="#collapse1" aria-expanded="true">Add printer</a>
-					</h4>
+		<!-- ========================= BEGIN JQUERY ============================= -->
+		<script src="node_modules/jquery/dist/jquery.js"></script>
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<!-- ========================== END JQUERY ============================== -->
+
+		<!-- ========================== BEGIN BOOTSTRAP ========================= -->
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/custom.css"/>
+		<link type="text/javascript" href="bootstrap/js/bootstrap.min.js"/>
+		<!-- =========================== END BOOTSTRAP ========================== -->	
+
+		<!-- =========================== BEGIN ANGULAR ========================== -->		
+		<script src="node_modules/angular/angular.min.js"></srcipt>
+		<script src="mode_modules/angular/angular.js"></script>
+		<!-- ============================= END ANGULAR ========================== -->		
+		<!-- Local code-->
+		<script src="script.js"></script>
+
+		<!-- ================== BEGIN ANGULAR FILE UPLOAD ========================-->
+		<script src="node_modules/angular-file-upload/dist/angular-file-upload.js"></script>
+		<script src="node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
+		<!-- ================== END ANGULAR FILE UPLOAD ========================= -->
+		
+		<!-- ================== BEGIN ANGULAR-MULTI-SELECT ====================== -->	
+	 <script src="node_modules/angular-multi-select/src/angular-multi-select.js"></script>  
+		<!-- ================== END ANGULAR-MULTI-SELECT ======================== -->	
+		
+		<!-- ================== BEGIN BASE CSS STYLE ============================ -->
+		<link href="http://fonts.googleapis.com/css?family=Nunito:400,300,700" rel="stylesheet" id="fontFamilySrc" />
+		<link href="admin/angular/template_content/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+		<link href="admin/angular/template_content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="admin/angular/template_content/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="admin/angular/template_content/assets/css/animate.min.css" rel="stylesheet" />
+		<link href="admin/angular/template_content/assets/css/style.min.css" rel="stylesheet" />
+		<link href="admin/html/template_content/assets/css/style.css" rel="stylesheet" />
+		<link href="admin/html/template_content/assets/css/style.min.css" rel="stylesheet" />
+		<link href="admin/angular/template_content/assets/css/style.css" rel="stylesheet" />
+		<!-- ================== END BASE CSS STYLE ============================== -->
+		
+		<!-- ======================== BEGIN FLOT ================================ -->
+		<script type="text/javascript" src="node_modules/flot/jquery.flot.js"></script>
+		<script type="text/javascript" src="node_modules/flot/jquery.flot.time.js"></script>  
+		<!-- ========================== END FLOT ================================ -->
+
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="admin/angular/template_content/assets/plugins/pace/pace.min.js"></script>
+		<!-- ================== END BASE JS ================== -->
+
+		<!--[if lt IE 9]>
+				<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+		<![endif]-->
+
+		<!-- ================== BEGIN BASE ANGULAR JS ================== -->
+			<script src="admin/angular/template_content/assets/plugins/angularjs/angular-ui-route.min.js"></script>
+			<script src="admin/angular/template_content/assets/plugins/bootstrap-angular-ui/ui-bootstrap-tpls.min.js"></script>
+			<script src="admin/angular/template_content/assets/plugins/angularjs/ocLazyLoad.min.js"></script>
+		<!-- ================== END BASE ANGULAR JS ================== -->
+		<!-- Navbar -->
+		<div class="row" style="padding-bottom:60px">
+			<div class="col-md-12" style="background:rgba(0,0,0,0.70)">
+				<img src="images/typeALogoOrange.svg" width=70px height=70px style="padding-left:20px">
+				<img src="images/TypeALogo_White.png" height=40px style="padding-left:5px; padding-top:5px; opacity:0.6">
+			</div>
+		</div>	
+	</head>
+	<ng-view></ng-view>
+	<body>
+		<!-- Page container -->
+		<div class="container-fluid">
+		<!-- Main body row -->
+		<div class="row">
+			<!-- ==================== BEGIN ADD FILE ================== -->
+			<div class="col-md-3" ng-controller='FileManagementController'>
+				<div class="panel panel-default panel-black">
+					<div class="panel-heading">
+						<h5 class="panel-title">File Drop</h5>
+					</div>				
+					<div class="panel-body" nv-file-drop="" uploader="uploader" style="padding-bottom:0px">
+						<div ng-show="uploader.isHTML5">
+								<!-- 3. nv-file-over uploader="link" over-class="className" -->
+								<div class="well my-drop-zone" nv-file-over="" ng-model= "fileInQuestion" uploader="uploader" style="border:2px; border-style:dotted; color:grey">
+										<center><h4 style="color:grey">Drop Files Here</h4></center>
+								</div>
+						</div>
+					</div>
 				</div>
-				<div id="collapse1" class="panel-collapse">
+				<div class="panel panel-default panel-black">
+					<div class="panel-heading"><h5 class="panel-title">Files</h5></div>
 					<div class="panel-body">
-						<div class="input-group">
-							<b>Serial</b>
-							<input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" ng-model="serial">
+						<div align="center" ng-hide="fileList.length">No Files Added Yet</div>
+						<div ng-repeat="file in fileList" style="padding-bottom:5px">
+							<div class="btn btn-block btn-success" style="font-family:nunito">
+								{{file.name}}
+							</div>
 						</div>
-						<div class="input-group">
-							<b>Key</b>
-							<input type="text" class="form-control printers" placeholder="" aria-describedby="basic-addon1" ng-model="key">
-						</div>
-						<br>
-						<button type="button" class="btn btn-default" ng-click="printers(serial)">Add Printer</button>
+					</div>
+				</div>
+				<div class="panel panel-default panel-black">
+					<div class="panel-heading panel-transparent"><h5 class="panel-title">Add Printer</h5></div>
+					<div class="panel-body" ng-controller='postPrinterAddCtrl as printer'>
+						<form ng-submit='printer.doHTTPRequest(printer.serial, printer.key)'>
+							<label align="left">Serial Number:</label><input type="text" ng-model="printer.serial" style="width:100%"/>
+							<label align="left">API Key:</label><input type="text" ng-model="printer.key" style="width:100%"/>
+							<button value="submit">Add Printer</button>
+						</form>
 					</div>
 				</div>
 			</div>
-    </div>
-    <!-- col-size 9-->
-    <div class="col-sm-9 wExtraPadding">
-    	<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Printers Available: {{printerQty}}</h3>
-				</div>
-				
-				<div class="panel-body">
-					<div class="table-responsive">
-					<table style="width:100%">
-						<tr>
-							<th>Serial</th>
-							<th>Status</th>
-							<th>Last File</th>
-						</tr>
-						<tr ng-show="visible" ng-repeat="print in printersList">
-							<td>{{print}}</td>
-							<td>{{status}}</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
+			<!-- ==================== END ADD FILE =========================== -->
+		
+			<div ng-controller='printerAddCtrl as printerAdd'>
+				<div class="col-md-3" ng-repeat="printer in printerAdd.printers"  style="padding-left:15px; padding-right:15px">
+					<div class="panel panel-default panel-black">
+						<!-- serial and state -->
+						<!--div class="widget-stat-info"-->
+						<div class="panel-heading panel-transparent">
+							<h3 class="panel-title"> Series 1 - {{printer.printerData.serial}}</h3>
+						</div>
+						<div class="panel-body">
+					
+							<!-- ========== START PROGRESS ========== -->
+							<div class="row">
+								<center>	
+								<!-- Percentage -->
+
+								<h3 style="margin-top:0px">{{printer.printerData.status.state}}</h3>
+								<p style="font-size:15px"> {{printer.jobData.job.file.name}} </p>
+								<!-- Progress Bar  -->
+								<div class="col-md-2" style="float:left; width: 100%">						
+									<center><div class="progress progress-lg">
+										<div class="progress-bar progress-bar-success" style="width: {{printer.jobData.progress.completion}}"><p align="left" style="font-family:nunito">{{printer.jobData.progress.completion}}</p></div>
+									</div></center>
+								</div>
+								<!--div class="col-md-1">								
+									<p style="font-size:30px; font-family:nunito">{{printer.jobData.progress.completion}}</p>
+								</div-->
+								</center>
+							</div>
+							<!-- ========== END PROGRESS ========== -->
+						
+							<!-- ========== START TEMPERATURE ========= -->
+							<!-- Ext Temperature -->
+							<div class="row">
+								<!-- Extrusion temperature text label -->
+								<div class="col-md-1" style="float:left">
+									<p style="font-size:15px; font-family:nunito; width:50%">Ext Temp</p>
+								</div>
+							
+								<!-- Extrusion temperature numerical value -->
+								<div class="col-md-1" style="padding-left:35px; positive:relative; margin-right:18%; padding-top: 5px">
+									<p style="font-size:25px; font-family:nunito; width:50%">{{printer.printerData.status.temperature.tool0_actual}}&deg </p>
+								</div>
+							
+								<div class="col-md-1" style="position:relative; margin-right: 10px">
+									<div class="widget widget-stat" style="border-style:solid; border-width: 1px; border-color: #4c4c4c; height: 45px; width:200px"><p style="font-color:#4c4c4c">Eventual Ext Temp Chart</p></div>
+								</div>								
+							</div>	
+							<!-- Bed Temperature -->
+							<div class="row span3">
+								<!-- Bed temperature text label -->
+								<div class="col-md-1" style="float:left; position: relative">
+									<p style="font-size:13px; font-family:nunito; width:25%">Bed Temp</p>
+								</div>
+							
+								<!-- Bed temperature numerical value -->
+								<div class="col-md-1" style="padding-left:35px; positive:relative; margin-right:18%">
+									<p style="padding-left:10px; font-size:25px; font-family:nunito; width:25%"> {{printer.printerData.status.temperature.bed_actual}}&deg</p>
+								</div>
+
+								<div class="col-md-1" style="position:relative">
+									<div class="widget widget-stat span3" style="border-style:solid; border-width: 1px; height: 45px; width:200px; margin-right:10px">Eventual Bed Temp Chart</div>
+								</div>
+						</div>
+							<!-- ========== END TEMPERATURE ========= -->
+						
+							<hr style="margin-top:0px">
+						
+							<div class="row" style="margin-top: 0px">		
+								<div class="span3" ng-hide="{{printer.printerData.status.state}} == 'Printing'" ng-show="{{printer.printerData.status.state}} != 'Operational'" style="padding-left: 100px; padding-right: 100px">
+									<div class="span1" style="float:left; margin-right: 10px">
+										<div class="start-icon">
+											<img id="stopPrint" onmouseover="lighten(this)" onmouseout="normal(this)" src="images/square.svg" alt="Smiley" width= 60px height= 60px ng-click="stopPrint()">
+									
+											<script>
+												function lighten(x) {
+													x.style.opacity = 0.5;
+												}
+												function normal(x) {
+													x.style.opacity = 1;
+												}
+											</script>
+
+									</div>									
+									</div>	
+									<div class="span1" style="margin-left: 30px">
+									<div class="start-icon">
+											<img id="resumePause" onmouseover="lighten(this)" onmouseout="normal(this)" src="images/arrow.svg" alt="Smiley" width= 60px height= 60px ng-click="resumePrint(this); checkStatus()">
+									
+										<script>
+											function lighten(x) {
+												x.style.opacity = 0.5;
+											}
+											function normal(x) {
+												x.style.opacity = 1;
+											}
+										</script>
+
+									</div>
+								</div>
+								</div>
+							
+							<div class="span3" ng-hide="{{printer.printerData.status.state}} != 'Printing'" ng-show="{{printer.printerData.status.state}} == 'Printing' ">
+								<center>
+									<div class="btn btn-success" style="padding-left: 100px; padding-right: 100px">
+										<p style="font-size: 30px">SELECT</p>
+									</div>
+								</center>
+							</div>				
+						</div>
 					</div>
 				</div>
-				
-				
 			</div>
 		</div>
-	</div>
-</div>
-
-</body>
+	</body>
 </html>
