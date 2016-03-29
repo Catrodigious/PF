@@ -11,8 +11,13 @@
   ],
   "main": "main.js",
   "dependencies": {
+    "ag-grid": "^3.3.3",
+    "angular-file-upload": "^2.2.0",
+    "angular-multi-select": "^5.5.8",
     "bootstrap": "^3.3.5",
+    "busboy-body-parser": "0.0.9",
     "express": "^4.13.1",
+    "flot": "^0.8.0-alpha",
     "mongoose": "^4.2.4"
   },
   "devDependencies": {},
