@@ -1,0 +1,7 @@
+div.start-icon {
+	background:url('images/circle.svg') no-repeat 0 0;
+};
+
+div.start-icon:hover{
+	opacity:50%;
+};
